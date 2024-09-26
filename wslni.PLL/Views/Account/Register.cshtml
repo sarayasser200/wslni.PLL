@@ -1,0 +1,48 @@
+﻿@model wslni.BLL.ModelVM.RegisterUserVM;
+@{
+    ViewData["Title"] = "Register";
+}
+
+<div class="register-container" style="background-color: #ECF0F1; padding: 50px; min-height: 100vh;">
+    <div class="register-card" style="max-width: 400px; margin: auto; background-color: #2ECC71; padding: 40px; border-radius: 10px; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);">
+        <div class="text-center">
+            <img src="/images/car-logo.png" alt="Logo" style="width: 50px; margin-bottom: 20px;">
+            <h2 style="color: #FFFFFF; margin-bottom: 20px;">Join Our Ride-Sharing Service</h2>
+        </div>
+
+        <form asp-action="Register" method="post" style="color: #FFFFFF;">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="UserName" style="color: #FFFFFF;">Full Name</label>
+                <input asp-for="UserName" class="form-control" placeholder="Enter your full name" style="border-radius: 5px; padding: 10px; border: 1px solid #16A085;">
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" style="color: #FFFFFF;">Email</label>
+                <input asp-for="Email" class="form-control" placeholder="Enter your email" style="border-radius: 5px; padding: 10px; border: 1px solid #16A085;">
+            </div>
+            <div class="form-group">
+                <label asp-for="PhoneNumber" style="color: #FFFFFF;">Phone Number</label>
+                <input asp-for="PhoneNumber" class="form-control" placeholder="Enter your phone number" style="border-radius: 5px; padding: 10px; border: 1px solid #16A085;">
+            </div>
+            <div class="form-group">
+                <label asp-for="DriverLicense" style="color: #FFFFFF;">Driver License</label>
+                <input asp-for="DriverLicense" class="form-control" placeholder="Enter your driver license number" style="border-radius: 5px; padding: 10px; border: 1px solid #16A085;">
+            </div>
+            <div class="form-group">
+                <label asp-for="Password" style="color: #FFFFFF;">Password</label>
+                <input asp-for="Password" type="password" class="form-control" placeholder="Enter your password" style="border-radius: 5px; padding: 10px; border: 1px solid #16A085;">
+            </div>
+            <div class="form-group">
+                <label asp-for="ConfirmPassword" style="color: #FFFFFF;">Confirm Password</label>
+                <input asp-for="ConfirmPassword" type="password" class="form-control" placeholder="Confirm your password" style="border-radius: 5px; padding: 10px; border: 1px solid #16A085;">
+            </div>
+
+            <button type="submit" class="btn btn-block" style="background-color: #1ABC9C; color: white; padding: 10px; border-radius: 5px; margin-top: 20px;">Create Account</button>
+        </form>
+
+        <div class="text-center" style="margin-top: 20px;">
+            <a href="/Account/Login" style="color: #FFFFFF; text-decoration: none;">Already have an account? Log in</a>
+        </div>
+    </div>
+</div>
+

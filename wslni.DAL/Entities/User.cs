@@ -11,9 +11,9 @@ namespace wslni.DAL.Entities
     {
         // Add additional properties specific to your system
         public string FullName { get; set; }
-        public string ProfileImage { get; set; }
+        public string ? ProfileImage { get; set; }
         public decimal Rating { get; set; }
-        public string Bio { get; set; }
+        public string ? Bio { get; set; }
         public DateTime CreatedAt { get; set; }
         public string DriverLicense { get; set; }
         public DateTime LicenseExpiration { get; set; }

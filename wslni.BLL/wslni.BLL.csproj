@@ -15,4 +15,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\wslni.DAL\wslni.DAL.csproj" />
+  </ItemGroup>
+
 </Project>
