@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using wslni.DAL.DB;
 
@@ -11,9 +12,11 @@ using wslni.DAL.DB;
 namespace wslni.DAL.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240927133641_newone")]
+    partial class newone
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -401,8 +404,10 @@ namespace wslni.DAL.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("DriverId")
-                        .IsRequired()
+                    b.Property<int>("DriverId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("DriverId1")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("EndLocation")
@@ -428,7 +433,7 @@ namespace wslni.DAL.Migrations
 
                     b.HasKey("RideId");
 
-                    b.HasIndex("DriverId");
+                    b.HasIndex("DriverId1");
 
                     b.ToTable("Rides");
                 });
@@ -569,9 +574,12 @@ namespace wslni.DAL.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("UserId")
+                    b.Property<string>("OwnerId")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
 
                     b.Property<string>("VehiclePictureUrl")
                         .IsRequired()
@@ -579,7 +587,7 @@ namespace wslni.DAL.Migrations
 
                     b.HasKey("VehicleId");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("OwnerId");
 
                     b.ToTable("Vehicles");
                 });
@@ -754,9 +762,7 @@ namespace wslni.DAL.Migrations
                 {
                     b.HasOne("wslni.DAL.Entities.User", "Driver")
                         .WithMany("Rides")
-                        .HasForeignKey("DriverId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("DriverId1");
 
                     b.Navigation("Driver");
                 });
@@ -782,7 +788,7 @@ namespace wslni.DAL.Migrations
                 {
                     b.HasOne("wslni.DAL.Entities.User", "Owner")
                         .WithMany()
-                        .HasForeignKey("UserId")
+                        .HasForeignKey("OwnerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

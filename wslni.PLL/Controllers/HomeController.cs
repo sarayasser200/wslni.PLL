@@ -1,32 +1,39 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using wslni.BLL.services.interfaces;
+using wslni.DAL.Entities;
 using wslni.PLL.Models;
 
 namespace wslni.PLL.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly IRideService _rideService;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(IRideService rideService)
         {
-            _logger = logger;
+            _rideService = rideService;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index(string searchDestination)
         {
-            return View();
+            List<Ride> rides;
+
+            if (!string.IsNullOrEmpty(searchDestination))
+            {
+                rides = await _rideService.SearchRidesByDestinationAsync(searchDestination);
+            }
+            else
+            {
+                rides = await _rideService.GetAvailableRidesAsync();
+            }
+
+            return View(rides); // Pass the rides to the view
         }
 
-        public IActionResult Privacy()
+        public IActionResult CreateRide()
         {
-            return View();
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            return RedirectToAction("Create", "Ride"); // Button redirects to Ride creation page
         }
     }
 }

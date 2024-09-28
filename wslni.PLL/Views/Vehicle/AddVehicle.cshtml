@@ -1,0 +1,49 @@
+﻿@model wslni.BLL.ModelVM.VehicleVM
+
+@{
+    ViewData["Title"] = "Add Vehicle";
+}
+
+<h1>Add Vehicle</h1>
+
+<h4>VehicleVM</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="AddVehicle" enctype="multipart/form-data"> <!-- Add enctype for file upload -->
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="CarModel" class="control-label"></label>
+                <input asp-for="CarModel" class="form-control" />
+                <span asp-validation-for="CarModel" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="CarColor" class="control-label"></label>
+                <input asp-for="CarColor" class="form-control" />
+                <span asp-validation-for="CarColor" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="LicensePlate" class="control-label"></label>
+                <input asp-for="LicensePlate" class="form-control" />
+                <span asp-validation-for="LicensePlate" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="VehiclePicture" class="control-label"></label>
+                <input asp-for="VehiclePicture" type="file" class="form-control" />
+                <span asp-validation-for="VehiclePicture" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>

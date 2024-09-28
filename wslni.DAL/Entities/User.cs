@@ -15,8 +15,8 @@ namespace wslni.DAL.Entities
         public decimal Rating { get; set; }
         public string ? Bio { get; set; }
         public DateTime CreatedAt { get; set; }
-        public string DriverLicense { get; set; }
-        public DateTime LicenseExpiration { get; set; }
+        public string? DriverLicense { get; set; }
+        public DateTime? LicenseExpiration { get; set; }
 
         // Navigation Properties
         public ICollection<Ride> Rides { get; set; }

@@ -1,0 +1,42 @@
+﻿
+
+
+@model wslni.BLL.ModelVM.CreateRideVM
+
+<h2>Create a New Ride</h2>
+
+<form asp-action="Create" method="post">
+    <div class="form-group">
+        <label asp-for="StartLocation"></label>
+        <input asp-for="StartLocation" class="form-control" />
+        <span asp-validation-for="StartLocation" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="EndLocation"></label>
+        <input asp-for="EndLocation" class="form-control" />
+        <span asp-validation-for="EndLocation" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="RideDate"></label>
+        <input asp-for="RideDate" class="form-control" type="datetime-local" />
+        <span asp-validation-for="RideDate" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="SeatsAvailable"></label>
+        <input asp-for="SeatsAvailable" class="form-control" />
+        <span asp-validation-for="SeatsAvailable" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="TotalCost"></label>
+        <input asp-for="TotalCost" class="form-control" />
+        <span asp-validation-for="TotalCost" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Create Ride</button>
+</form>
+
+

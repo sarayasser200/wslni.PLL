@@ -1,0 +1,36 @@
+﻿@model wslni.BLL.ModelVM.LicenseVM
+
+@{
+    ViewData["Title"] = "AddLicense";
+}
+
+<h1>Add License</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="AddLicense" enctype="multipart/form-data"> <!-- Add enctype for file upload -->
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="DriverLicense" class="control-label">Upload Driver License</label>
+                <input asp-for="DriverLicense" class="form-control" type="file" /> <!-- File input for image upload -->
+                <span asp-validation-for="DriverLicense" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="LicenseExpiration" class="control-label"></label>
+                <input asp-for="LicenseExpiration" class="form-control" />
+                <span asp-validation-for="LicenseExpiration" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>

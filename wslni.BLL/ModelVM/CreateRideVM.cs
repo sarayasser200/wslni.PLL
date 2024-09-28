@@ -5,23 +5,28 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace wslni.DAL.Entities
+namespace wslni.BLL.ModelVM
 {
-    public class Ride
+    public class CreateRideVM
     {
         [Required]
-        public int RideId { get; set; }
-        public string DriverId { get; set; }
         public string StartLocation { get; set; }
-        public string EndLocation { get; set; }
-        public DateTime RideDate { get; set; }
-        public int SeatsAvailable { get; set; }
-        public decimal TotalCost { get; set; }
-        public DateTime CreatedAt { get; set; }
-        public string Status { get; set; }
 
-        // Navigation Properties
-        public User Driver { get; set; }
-        public ICollection<PassengerRide> PassengerRides { get; set; }
-    }
+        [Required]
+        public string EndLocation { get; set; }
+
+        [Required]
+        [DataType(DataType.DateTime)]
+        public DateTime RideDate { get; set; }
+
+        [Required]
+        public int SeatsAvailable { get; set; }
+
+        [Required]
+        [DataType(DataType.Currency)]
+        public decimal TotalCost { get; set; }
+
+        public string Status { get; set; } = "pending";  // Default status
+    
+}
 }

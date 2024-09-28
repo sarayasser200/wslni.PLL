@@ -2,7 +2,41 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+@model List<wslni.DAL.Entities.Ride>
+
+<h2>Available Rides</h2>
+
+<!-- Search Form -->
+<form asp-action="Index" method="get">
+    <input type="text" name="searchDestination" placeholder="Search by Destination" value="@ViewData["searchDestination"]" />
+    <button type="submit">Search</button>
+</form>
+
+<!-- Create Ride Button -->
+<a asp-action="CreateRide" class="btn btn-primary">Create a Ride Post</a>
+
+<!-- Ride Listing -->
+<table class="table">
+    <thead>
+        <tr>
+            <th>Start Location</th>
+            <th>End Location</th>
+            <th>Date</th>
+            <th>Seats Available</th>
+            <th>Total Cost</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var ride in Model)
+        {
+                <tr>
+                    <td>@ride.StartLocation</td>
+                    <td>@ride.EndLocation</td>
+                    <td>@ride.RideDate.ToShortDateString()</td>
+                    <td>@ride.SeatsAvailable</td>
+                    <td>@ride.TotalCost</td>
+                </tr>
+        }
+    </tbody>
+</table>
+

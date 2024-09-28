@@ -1,23 +1,25 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace wslni.DAL.Entities
+namespace wslni.BLL.ModelVM
 {
-    public class Vehicle
+    public class VehicleVM
     {
         [Required]
-        public int VehicleId { get; set; }
-        public string UserId { get; set; }
         public string CarModel { get; set; }
-        public string CarColor { get; set; }
-        public string LicensePlate { get; set; }
-        public string VehiclePictureUrl { get; set; }
-        public DateTime CreatedAt { get; set; }
 
-        public User Owner { get; set; }
+        [Required]
+        public string CarColor { get; set; }
+
+        [Required]
+        public string LicensePlate { get; set; }
+
+        [Required]
+        public IFormFile VehiclePicture { get; set; }
     }
 }

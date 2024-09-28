@@ -1,48 +1,140 @@
-﻿@model wslni.BLL.ModelVM.RegisterUserVM;
-@{
-    ViewData["Title"] = "Register";
-}
+﻿@model wslni.BLL.ModelVM.RegisterUserVM
 
-<div class="register-container" style="background-color: #ECF0F1; padding: 50px; min-height: 100vh;">
-    <div class="register-card" style="max-width: 400px; margin: auto; background-color: #2ECC71; padding: 40px; border-radius: 10px; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);">
-        <div class="text-center">
-            <img src="/images/car-logo.png" alt="Logo" style="width: 50px; margin-bottom: 20px;">
-            <h2 style="color: #FFFFFF; margin-bottom: 20px;">Join Our Ride-Sharing Service</h2>
-        </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 
-        <form asp-action="Register" method="post" style="color: #FFFFFF;">
-            <div asp-validation-summary="All" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="UserName" style="color: #FFFFFF;">Full Name</label>
-                <input asp-for="UserName" class="form-control" placeholder="Enter your full name" style="border-radius: 5px; padding: 10px; border: 1px solid #16A085;">
-            </div>
-            <div class="form-group">
-                <label asp-for="Email" style="color: #FFFFFF;">Email</label>
-                <input asp-for="Email" class="form-control" placeholder="Enter your email" style="border-radius: 5px; padding: 10px; border: 1px solid #16A085;">
-            </div>
-            <div class="form-group">
-                <label asp-for="PhoneNumber" style="color: #FFFFFF;">Phone Number</label>
-                <input asp-for="PhoneNumber" class="form-control" placeholder="Enter your phone number" style="border-radius: 5px; padding: 10px; border: 1px solid #16A085;">
-            </div>
-            <div class="form-group">
-                <label asp-for="DriverLicense" style="color: #FFFFFF;">Driver License</label>
-                <input asp-for="DriverLicense" class="form-control" placeholder="Enter your driver license number" style="border-radius: 5px; padding: 10px; border: 1px solid #16A085;">
-            </div>
-            <div class="form-group">
-                <label asp-for="Password" style="color: #FFFFFF;">Password</label>
-                <input asp-for="Password" type="password" class="form-control" placeholder="Enter your password" style="border-radius: 5px; padding: 10px; border: 1px solid #16A085;">
-            </div>
-            <div class="form-group">
-                <label asp-for="ConfirmPassword" style="color: #FFFFFF;">Confirm Password</label>
-                <input asp-for="ConfirmPassword" type="password" class="form-control" placeholder="Confirm your password" style="border-radius: 5px; padding: 10px; border: 1px solid #16A085;">
-            </div>
+    <!-- Include jQuery and jQuery Unobtrusive Validation -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.2/dist/jquery.validate.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation-unobtrusive@3.2.11/jquery.validate.unobtrusive.min.js"></script>
 
-            <button type="submit" class="btn btn-block" style="background-color: #1ABC9C; color: white; padding: 10px; border-radius: 5px; margin-top: 20px;">Create Account</button>
-        </form>
+    <style> 
+        body { 
+            background-image: url('https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRvGMpJ28NRKTMM5JpkSjZirBHnjlNBtDspSRhPpqatOlvBjtn0'); 
+            background-repeat: no-repeat; 
+            background-size: cover; /* Resize to cover the entire area */ 
+            background-position: center; 
+            background-attachment: fixed; 
+            height: 100vh; 
+            position: relative; /* Allow absolute positioning of child elements */ 
+        } 
 
-        <div class="text-center" style="margin-top: 20px;">
-            <a href="/Account/Login" style="color: #FFFFFF; text-decoration: none;">Already have an account? Log in</a>
+        .overlay { 
+           /*  background-color: rgba(0, 0, 0, 0.5); */ /* Dark transparent overlay */ 
+            position: absolute; 
+            top: 0; 
+            left: 0; 
+            right: 0; 
+            bottom: 0; 
+        } 
+
+        .register-container { 
+            /* background-color: rgba(255, 255, 255, 0.85); */ /* Slightly transparent background */ 
+            border-radius: 10px; 
+            padding: 20px; /* Reduced padding for smaller height */ 
+            margin: auto; 
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+            width: 450px; /* Adjusted width */ 
+            position: relative; /* Change to relative for top margin */ 
+            right: 250px; /* Move to the left */ 
+            top: 20px; /* Adjust this value for space from the navbar */ 
+        } 
+
+        .register-header { 
+            font-size: 1.5em; 
+            font-weight: bold; 
+            margin-bottom: 5px; /* Reduced margin */ 
+            text-align: center; 
+        } 
+
+        .form-group { 
+            margin-bottom: 5px; /* Reduced space between fields */ 
+        } 
+
+        .btn-custom { 
+            background-color: rgba(0, 0, 0, 0.5); /* Match the background overlay color */ 
+            color: #fff; 
+        } 
+
+        .btn-custom:hover { 
+            background-color: rgba(0, 0, 0, 0.5); /* Darker hover effect */ 
+        } 
+
+        .wave-image { 
+            position: absolute; /* Position it above the background */ 
+            top: 110px; /* Adjust to position it vertically */ 
+            right: 30px; /* Adjust to position it horizontally */ 
+            width: 300px; /* Increase width for a larger image */ 
+            height: auto; /* Maintain aspect ratio */ 
+            opacity: 0.6; /* Add transparency effect */ 
+            z-index: 1; /* Ensure it appears above the background */ 
+        } 
+    </style> 
+</head> 
+<body> 
+    <!-- Overlay to make the background darker --> 
+    <div class="overlay"></div> 
+
+    <!-- Image to be placed on the right side --> 
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjAiebnkLXCgTf_5R7DbgZSuf07eYSNHfFgz5mnsAlp2Fdez7l" class="wave-image" alt="Wave Image" /> 
+
+    <div class="container"> 
+        <div class="register-container"> 
+            <div class="register-header"> 
+                Register 
+            </div> 
+
+            @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                @Html.AntiForgeryToken()
+
+                    <!-- Display a summary of validation errors -->
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                    <div class="form-group">
+                    @Html.LabelFor(m => m.UserName)
+                    @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group">
+                    @Html.LabelFor(m => m.Email)
+                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group">
+                    @Html.LabelFor(m => m.PhoneNumber)
+                    @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.PhoneNumber, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group">
+                    @Html.LabelFor(m => m.ProfileImage)
+                    @Html.TextBoxFor(m => m.ProfileImage, new { @type = "file", @class = "form-control-file" })
+                    @Html.ValidationMessageFor(m => m.ProfileImage, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group">
+                    @Html.LabelFor(m => m.Password)
+                    @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group">
+                    @Html.LabelFor(m => m.ConfirmPassword)
+                    @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.ConfirmPassword, "", new { @class = "text-danger" })
+                    </div>
+
+                    <button type="submit" class="btn btn-custom btn-block">Create Account</button>
+            }
         </div>
     </div>
-</div>
-
+</body>
+</html>

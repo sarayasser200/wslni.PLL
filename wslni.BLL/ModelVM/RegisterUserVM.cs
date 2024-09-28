@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -21,13 +22,13 @@ namespace wslni.BLL.ModelVM
 
         public string ?Bio { get; set; }
 
-        [Required(ErrorMessage = "Driver License is required.")]
-        public string DriverLicense { get; set; }
+        
+        public string? DriverLicense { get; set; }
 
-        [Required(ErrorMessage = "License Expiration is required.")]
-        public DateTime LicenseExpiration { get; set; }
+        
+        public DateTime? LicenseExpiration { get; set; }
 
-        public string ?ProfileImage { get; set; } // This could be a file upload (e.g., IFormFile)
+        public IFormFile? ProfileImage { get; set; } // This will allow for file uploads
 
         [Required(ErrorMessage = "Password is required.")]
         [StringLength(100, ErrorMessage = "Password must be at least {2} characters long.", MinimumLength = 6)]
